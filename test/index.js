@@ -2,7 +2,7 @@
 
 const Repo = require('../lib');
 const Cassandra = require('express-cassandra');
-const Assertions = require('../lib/test/Assertions');
+const Assertions = require('./assertions');
 
 /**
  * NODE_ENV=test mocha test/index.js --watch

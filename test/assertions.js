@@ -1,11 +1,13 @@
 'use strict';
 
-const assert = require('assert');
 const expect = require('expect');
 
 const add = (repo, bag) => done => {
   repo.add(bag.client, (err, res) => {
-    assert(!err);
+    if (err) {
+      console.log(err);
+      return done(err);
+    }
     expect(res).toExist();
     expect(res._id).toExist();
     bag.id = res._id;
@@ -16,7 +18,10 @@ const add = (repo, bag) => done => {
 };
 const findAll = repo => done => {
   repo.findAll((err, res) => {
-    assert(!err);
+    if (err) {
+      console.log(err);
+      return done(err);
+    }
     expect(res).toExist();
     expect(Array.isArray(res)).toBe(true);
     expect(typeof res[0]._id).toNotBe('object');
@@ -27,6 +32,7 @@ const findOne = (repo, bag) => done => {
   repo.findOne(bag.id, (err, res) => {
     if (err) {
       console.log(err);
+      return done(err);
     }
     expect(res).toExist('findOne is not returning an object');
     expect(typeof res._id).toNotBe('object');
@@ -41,6 +47,7 @@ const update = (repo, bag) => done => {
   }, (err, res) => {
     if (err) {
       console.log(err);
+      return done(err);
     }
     expect(res).toExist();
     expect(typeof res._id).toNotBe('object');
@@ -50,12 +57,18 @@ const update = (repo, bag) => done => {
 };
 const remove = (repo, bag) => done => {
   repo.remove(bag.id, (err, res) => {
-    assert(!err);
+    if (err) {
+      console.log(err);
+      return done(err);
+    }
     expect(res).toExist();
     expect(res.name).toBe('baz');
     expect(typeof res._id).toNotBe('object');
     repo.findOne(bag.id, (err, res) => {
-      assert(!err);
+      if (err) {
+        console.log(err);
+        return done(err);
+      }
       expect(res).toNotExist();
       done();
     });
