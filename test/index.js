@@ -60,9 +60,14 @@ describe('Cassandra Repository', () => {
           console.log(err);
           return done(err);
         }
-        models.loadSchema(modelName, schema);
-        repo = new Repo(models, modelName);
-        done();
+        models.loadSchema(modelName, schema, err => {
+          if (err) {
+            console.log(err);
+            return done(err);
+          }
+          repo = new Repo(models, modelName);
+          done();
+        });
       }, 50000);
     });
   });
