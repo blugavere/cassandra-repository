@@ -10,6 +10,8 @@ services:
         environment:
             - NODE_ENV=docker
             - CI=true
+            - TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
+            - TRAVIS=${TRAVIS}
     cassandra:
       image: cassandra:latest
       environment:

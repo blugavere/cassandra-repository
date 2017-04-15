@@ -38,8 +38,11 @@ gulp.task('pre-test', () => gulp.src([
 
 gulp.task('test', ['pre-test'], cb => {
   let mochaErr;
-  const delay = 40000;
-  console.log(`Waiting ${delay/1000} seconds for Cassandra to start...`);
+  let delay = 0;
+  if (process.env.NODE_ENV === 'docker') {
+    delay = 40000;
+  }
+  console.log(`Waiting ${delay / 1000} seconds for Cassandra to start...`);
   setTimeout(() => {
     gulp.src([
       'lib/**/*.test.js',
@@ -67,7 +70,7 @@ gulp.task('coveralls', ['test'], () => {
   if (!process.env.CI) {
     return;
   }
-
+  console.log(process.env);
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });
