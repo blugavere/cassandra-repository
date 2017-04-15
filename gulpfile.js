@@ -38,7 +38,8 @@ gulp.task('pre-test', () => gulp.src([
 
 gulp.task('test', ['pre-test'], cb => {
   let mochaErr;
-  console.log('Waiting 25 seconds for Cassandra to start...');
+  const delay = 30000;
+  console.log(`Waiting ${delay/1000} seconds for Cassandra to start...`);
   setTimeout(() => {
     gulp.src([
       'lib/**/*.test.js',
@@ -55,7 +56,7 @@ gulp.task('test', ['pre-test'], cb => {
       .on('end', () => {
         cb(mochaErr);
       });
-  }, 25000);
+  }, delay);
 });
 
 gulp.task('watch', () => {
