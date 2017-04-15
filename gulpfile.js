@@ -38,21 +38,24 @@ gulp.task('pre-test', () => gulp.src([
 
 gulp.task('test', ['pre-test'], cb => {
   let mochaErr;
-  gulp.src([
-    'lib/**/*.test.js',
-    'test/**/*.js'
-  ])
-    .pipe(plumber())
-    .pipe(mocha({
-      reporter: 'spec'
-    }))
-    .on('error', err => {
-      mochaErr = err;
-    })
-    .pipe(istanbul.writeReports())
-    .on('end', () => {
-      cb(mochaErr);
-    });
+  console.log('Waiting 25 seconds for Cassandra to start...');
+  setTimeout(() => {
+    gulp.src([
+      'lib/**/*.test.js',
+      'test/**/*.js'
+    ])
+      .pipe(plumber())
+      .pipe(mocha({
+        reporter: 'spec'
+      }))
+      .on('error', err => {
+        mochaErr = err;
+      })
+      .pipe(istanbul.writeReports())
+      .on('end', () => {
+        cb(mochaErr);
+      });
+  }, 25000);
 });
 
 gulp.task('watch', () => {

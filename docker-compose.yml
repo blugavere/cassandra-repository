@@ -1,0 +1,16 @@
+version: '2'
+services:
+    app:
+        build: .
+        depends_on:
+          - cassandra
+        volumes:
+            - .:/app
+        command: npm test
+        environment:
+            - NODE_ENV=docker
+            - CI=true
+    cassandra:
+      image: cassandra:latest
+      environment:
+          - CASSANDRA_START_RPC=true
