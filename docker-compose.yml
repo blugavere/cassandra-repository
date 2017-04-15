@@ -10,8 +10,10 @@ services:
         environment:
             - NODE_ENV=docker
             - CI=true
-            - TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG}
-            - TRAVIS=${TRAVIS}
+            - TRAVIS_REPO_SLUG=blugavere/cassandra-repository
+            - TRAVIS=true
+            - COVERALLS_SERVICE_NAME=travis-ci
+            - COVERALLS_REPO_TOKEN=${COVERALLS}
     cassandra:
       image: cassandra:latest
       environment:

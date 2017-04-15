@@ -1,14 +1,17 @@
 language: node_js
 sudo: required
 node_js:
-  - v6
-  - v5
-  - v4
+- v6
+- v5
+- v4
 cache:
   bundler: true
   directories:
-  - node_modules # NPM packages
+  - node_modules
 services:
-  - docker
+- docker
 script:
-  - npm run docker
+- npm run docker
+env:
+  global:
+    secure: P0JRBu17Orbm36cxFwllmELlBwC4SJk3TCRMWQcdDlUA7w3aByor0MZZL3pw+M1QEgBKfW3w8HFPm8qdHviacaekM/TplztCNLYibRTJfDCyjIqiSY/JHNy5/l5hgrbO0f6XPoDnv2VwpHcQb487TiCbQ9uTdftfF9Izxf4DKRMKUKRGoekyWQtQwvXEF/NuU35FzD8zqPtwTQrgAFSij+uQAmQ/h/9uezAYOEZC8Re7SgOrkklG4+ZCr6NnVso+7zRnYbj27vlTviLn7F04357AjdUqUi3pjt3BKp0VheLd5hhQihAPOK2vZQN+Rr0vPn5ktITblkqEaoioboWnzJYAc3ROdjgjqjMC5s/zcRmajRYwiwRblqmx4Ljh6Pvd2cj9MEuSTwnwlbEUQuKXQWvrW4kW93ifzp1ijIDdt3ydayHR1AtqBoiA0o9spc0VtoRPiGLV8vCVqE/QQuBB/Bm8wIlNVZVTohQyggMijlrsd/FCwNwGSNKq88d5amyV07kL5yMV1EMDl6s5ij0nzfvUtaqJi0Mlr+caNbe6jcZmkIo2RLjxBW96Zv5tQNSaH8HYLAonutkv+k5nOU/sWB14NfLofXGKF9jPnvsvzRt1s4o14CnQsFwu8+lMPYw8QOtzZQavFbchHUQG4BZpNL7P4NwHfIS6tOJmNjY24Lg=

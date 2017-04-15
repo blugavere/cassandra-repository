@@ -70,7 +70,7 @@ gulp.task('coveralls', ['test'], () => {
   if (!process.env.CI) {
     return;
   }
-  console.log(process.env);
+
   return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
     .pipe(coveralls());
 });

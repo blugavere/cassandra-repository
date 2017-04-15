@@ -7,8 +7,6 @@ ONBUILD ENV APP_VERSION ${APP_VERSION}
 
 COPY package.json .npmrc /tmp/
 RUN cd /tmp && npm install --prod \
-  # no dependencies
-  # && cp -a /tmp/node_modules /app \
   && npm cache clear
 
 COPY . /app
